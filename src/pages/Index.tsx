@@ -129,10 +129,10 @@ const Services = () => (
       />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies." },
-          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection." },
-          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning." },
-          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services." },
+          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies.", color: "text-secondary" },
+          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection.", color: "text-primary" },
+          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning.", color: "text-accent" },
+          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services.", color: "text-secondary" },
         ].map((item, i) => (
           <motion.div
             key={i}
