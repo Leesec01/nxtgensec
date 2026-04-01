@@ -12,52 +12,72 @@ import { useState } from "react";
 
 /* ─── Hero ─── */
 const Hero = () => (
-  <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-    <div className="absolute inset-0 bg-grid opacity-30" />
+  <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 bg-grid opacity-20" />
     <div className="absolute inset-0 bg-gradient-radial" />
+    {/* Subtle accent glow orbs */}
+    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
+    <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[120px]" />
+
     <div className="container relative mx-auto px-4 lg:px-8 py-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="max-w-3xl"
+        className="text-center max-w-4xl mx-auto"
       >
-        <span className="inline-block mb-6 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
-          Next Generation Security
-        </span>
-        <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
-          Securing Your{" "}
-          <span className="text-gradient-primary">Digital Assets</span>
-          {" "}With Confidence
-        </h1>
-        <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-          NxtGenSec delivers enterprise-grade cybersecurity, innovative development solutions, and cutting-edge products to protect and empower your business.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button variant="hero" size="lg">
-            Explore Services <ArrowRight className="ml-1 h-4 w-4" />
-          </Button>
-          <Button variant="hero-outline" size="lg">
-            Contact Us
-          </Button>
-        </div>
-      </motion.div>
+        {/* Badge */}
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="inline-flex items-center gap-2 mb-8 rounded-full border border-muted bg-muted/50 px-5 py-2 text-xs font-semibold tracking-wider text-foreground uppercase"
+        >
+          <Shield className="h-3.5 w-3.5 text-accent" />
+          India's Best Platform for Security-First Development
+        </motion.span>
 
-      {/* Decorative element */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block"
-      >
-        <div className="relative w-80 h-80">
-          <div className="absolute inset-0 rounded-full border border-primary/20 animate-pulse-glow" />
-          <div className="absolute inset-8 rounded-full border border-secondary/20 animate-pulse-glow" style={{ animationDelay: "1s" }} />
-          <div className="absolute inset-16 rounded-full border border-accent/20 animate-pulse-glow" style={{ animationDelay: "2s" }} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Shield className="h-16 w-16 text-primary animate-float" />
-          </div>
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="text-secondary font-heading text-sm md:text-base tracking-wide mb-4"
+        >
+          NxtGenSec | Next Generation Security
+        </motion.p>
+
+        {/* Main heading with multi-color words */}
+        <h1 className="font-heading text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+          <span className="text-foreground">Securing </span>
+          <span className="text-accent">Digital </span>
+          <span className="text-primary">Assets</span>
+        </h1>
+
+        {/* Description */}
+        <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground leading-relaxed">
+          We provide development and security solutions for startups, enterprises, and modern businesses using advanced technologies with a strict security-first approach.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Button variant="hero" size="lg" className="rounded-full">
+            Get Started <ArrowRight className="ml-1 h-4 w-4" />
+          </Button>
+          <Button variant="hero-outline" size="lg" className="rounded-full">
+            Explore Services
+          </Button>
         </div>
+
+        {/* Tagline */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-12 text-sm md:text-base font-semibold text-gradient-primary tracking-wide"
+        >
+          Security-first. Execution-focused. Built for the future.
+        </motion.p>
       </motion.div>
     </div>
   </section>
@@ -75,9 +95,9 @@ const About = () => (
       />
       <div className="grid gap-8 md:grid-cols-3">
         {[
-          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected." },
-          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research." },
-          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs." },
+          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected.", color: "text-primary" },
+          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research.", color: "text-accent" },
+          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs.", color: "text-secondary" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -87,7 +107,7 @@ const About = () => (
             transition={{ delay: i * 0.15 }}
             className="rounded-xl border border-border bg-card p-8 hover:border-glow transition-colors duration-300"
           >
-            <item.icon className="h-10 w-10 text-primary mb-4" />
+            <item.icon className={`h-10 w-10 ${item.color} mb-4`} />
             <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{item.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
           </motion.div>
@@ -109,10 +129,10 @@ const Services = () => (
       />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies." },
-          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection." },
-          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning." },
-          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services." },
+          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies.", color: "text-secondary" },
+          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection.", color: "text-primary" },
+          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning.", color: "text-accent" },
+          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services.", color: "text-secondary" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -122,8 +142,8 @@ const Services = () => (
             transition={{ delay: i * 0.1 }}
             className="group rounded-xl border border-border bg-card p-6 hover:border-glow hover:glow-primary transition-all duration-300"
           >
-            <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-              <item.icon className="h-6 w-6 text-primary" />
+            <div className={`mb-4 inline-flex rounded-lg p-3 ${item.color === 'text-primary' ? 'bg-primary/10' : item.color === 'text-accent' ? 'bg-accent/10' : 'bg-secondary/10'}`}>
+              <item.icon className={`h-6 w-6 ${item.color}`} />
             </div>
             <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
