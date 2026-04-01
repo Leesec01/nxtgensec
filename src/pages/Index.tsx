@@ -142,8 +142,8 @@ const Services = () => (
             transition={{ delay: i * 0.1 }}
             className="group rounded-xl border border-border bg-card p-6 hover:border-glow hover:glow-primary transition-all duration-300"
           >
-            <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-              <item.icon className="h-6 w-6 text-primary" />
+            <div className={`mb-4 inline-flex rounded-lg p-3 ${item.color === 'text-primary' ? 'bg-primary/10' : item.color === 'text-accent' ? 'bg-accent/10' : 'bg-secondary/10'}`}>
+              <item.icon className={`h-6 w-6 ${item.color}`} />
             </div>
             <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
