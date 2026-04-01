@@ -12,52 +12,72 @@ import { useState } from "react";
 
 /* ─── Hero ─── */
 const Hero = () => (
-  <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-    <div className="absolute inset-0 bg-grid opacity-30" />
+  <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 bg-grid opacity-20" />
     <div className="absolute inset-0 bg-gradient-radial" />
+    {/* Subtle accent glow orbs */}
+    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
+    <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[120px]" />
+
     <div className="container relative mx-auto px-4 lg:px-8 py-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="max-w-3xl"
+        className="text-center max-w-4xl mx-auto"
       >
-        <span className="inline-block mb-6 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
-          Next Generation Security
-        </span>
-        <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
-          Securing Your{" "}
-          <span className="text-gradient-primary">Digital Assets</span>
-          {" "}With Confidence
-        </h1>
-        <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-          NxtGenSec delivers enterprise-grade cybersecurity, innovative development solutions, and cutting-edge products to protect and empower your business.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button variant="hero" size="lg">
-            Explore Services <ArrowRight className="ml-1 h-4 w-4" />
-          </Button>
-          <Button variant="hero-outline" size="lg">
-            Contact Us
-          </Button>
-        </div>
-      </motion.div>
+        {/* Badge */}
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="inline-flex items-center gap-2 mb-8 rounded-full border border-muted bg-muted/50 px-5 py-2 text-xs font-semibold tracking-wider text-foreground uppercase"
+        >
+          <Shield className="h-3.5 w-3.5 text-accent" />
+          India's Best Platform for Security-First Development
+        </motion.span>
 
-      {/* Decorative element */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block"
-      >
-        <div className="relative w-80 h-80">
-          <div className="absolute inset-0 rounded-full border border-primary/20 animate-pulse-glow" />
-          <div className="absolute inset-8 rounded-full border border-secondary/20 animate-pulse-glow" style={{ animationDelay: "1s" }} />
-          <div className="absolute inset-16 rounded-full border border-accent/20 animate-pulse-glow" style={{ animationDelay: "2s" }} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Shield className="h-16 w-16 text-primary animate-float" />
-          </div>
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="text-secondary font-heading text-sm md:text-base tracking-wide mb-4"
+        >
+          NxtGenSec | Next Generation Security
+        </motion.p>
+
+        {/* Main heading with multi-color words */}
+        <h1 className="font-heading text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+          <span className="text-foreground">Securing </span>
+          <span className="text-accent">Digital </span>
+          <span className="text-primary">Assets</span>
+        </h1>
+
+        {/* Description */}
+        <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground leading-relaxed">
+          We provide development and security solutions for startups, enterprises, and modern businesses using advanced technologies with a strict security-first approach.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Button variant="hero" size="lg" className="rounded-full">
+            Get Started <ArrowRight className="ml-1 h-4 w-4" />
+          </Button>
+          <Button variant="hero-outline" size="lg" className="rounded-full">
+            Explore Services
+          </Button>
         </div>
+
+        {/* Tagline */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-12 text-sm md:text-base font-semibold text-gradient-primary tracking-wide"
+        >
+          Security-first. Execution-focused. Built for the future.
+        </motion.p>
       </motion.div>
     </div>
   </section>
