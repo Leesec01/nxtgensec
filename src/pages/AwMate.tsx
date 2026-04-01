@@ -23,26 +23,32 @@ const useCases = [
   { title: "Incident Response", desc: "Automate incident classification, escalation, and response with intelligent playbooks." },
 ];
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
+
 const AwMatePage = () => (
   <Layout>
     {/* Hero */}
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute inset-0 bg-gradient-radial" />
+      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[120px]" />
       <div className="container relative mx-auto px-4 lg:px-8 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <span className="inline-block mb-6 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
+          <span className="inline-block mb-6 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-1.5 text-xs font-medium text-secondary">
             Product
           </span>
           <h1 className="font-heading text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
-            Meet <span className="text-gradient-primary">AwMate</span>
+            Meet <span className="text-secondary">AwMate</span>
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
             Your intelligent security companion — automated monitoring, instant alerts, and actionable insights all in one powerful platform.
           </p>
           <div className="mt-8 flex justify-center gap-4">
-            <Button variant="hero" size="lg">Request Demo <ArrowRight className="ml-1 h-4 w-4" /></Button>
-            <Button variant="hero-outline" size="lg">View Docs</Button>
+            <Button variant="secondary" size="lg" className="rounded-full">Request Demo <ArrowRight className="ml-1 h-4 w-4" /></Button>
+            <Button variant="outline" size="lg" className="rounded-full border-secondary/50 text-secondary hover:bg-secondary/10">View Docs</Button>
           </div>
         </motion.div>
       </div>
@@ -51,12 +57,12 @@ const AwMatePage = () => (
     {/* Features */}
     <section className="py-24 bg-surface">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Features" title="Everything You Need in" highlight="One Platform" />
+        <SectionHeading badge="Features" title="Everything You Need in" highlight="One Platform" badgeColor="secondary" highlightColor="secondary" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-border bg-card p-6 hover:border-glow transition-colors duration-300">
-              <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3"><f.icon className="h-6 w-6 text-primary" /></div>
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
+              className="rounded-xl border border-border bg-card p-6 hover:border-secondary/30 transition-colors duration-300">
+              <div className="mb-4 inline-flex rounded-lg bg-secondary/10 p-3"><f.icon className="h-6 w-6 text-secondary" /></div>
               <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{f.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
@@ -70,7 +76,7 @@ const AwMatePage = () => (
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid gap-12 items-center lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <SectionHeading badge="Benefits" title="Why Teams Love" highlight="AwMate" />
+            <SectionHeading badge="Benefits" title="Why Teams Love" highlight="AwMate" badgeColor="secondary" highlightColor="secondary" />
             <ul className="space-y-4">
               {[
                 "Reduce mean time to detection by 85%",
@@ -80,7 +86,7 @@ const AwMatePage = () => (
                 "SOC 2 and GDPR compliance out of the box",
               ].map((b, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm text-surface-foreground">
-                  <CheckCircle className="h-4 w-4 text-primary shrink-0" /> {b}
+                  <CheckCircle className="h-4 w-4 text-secondary shrink-0" /> {b}
                 </li>
               ))}
             </ul>
@@ -88,8 +94,8 @@ const AwMatePage = () => (
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div className="rounded-xl border border-border bg-card p-8 space-y-6">
               {[
-                { label: "Threat Detection", value: "99.8%", color: "bg-primary" },
-                { label: "Response Time", value: "<2min", color: "bg-secondary" },
+                { label: "Threat Detection", value: "99.8%", color: "bg-secondary" },
+                { label: "Response Time", value: "<2min", color: "bg-primary" },
                 { label: "False Positives", value: "<0.5%", color: "bg-accent" },
               ].map((stat, i) => (
                 <div key={i}>
@@ -117,12 +123,12 @@ const AwMatePage = () => (
     {/* Use Cases */}
     <section className="py-24 bg-surface">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Use Cases" title="Built for" highlight="Every Scenario" />
+        <SectionHeading badge="Use Cases" title="Built for" highlight="Every Scenario" badgeColor="secondary" highlightColor="secondary" />
         <div className="grid gap-6 sm:grid-cols-2">
           {useCases.map((uc, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
               className="rounded-xl border border-border bg-card p-8">
-              <Eye className="h-8 w-8 text-primary mb-4" />
+              <Eye className="h-8 w-8 text-secondary mb-4" />
               <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{uc.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{uc.desc}</p>
             </motion.div>
@@ -134,13 +140,13 @@ const AwMatePage = () => (
     {/* CTA */}
     <section className="py-24">
       <div className="container mx-auto px-4 lg:px-8 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="rounded-2xl border border-primary/20 bg-gradient-radial p-12 md:p-16">
+        <motion.div {...fadeUp}
+          className="rounded-2xl border border-secondary/20 p-12 md:p-16">
           <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            Start Using <span className="text-gradient-primary">AwMate</span> Today
+            Start Using <span className="text-secondary">AwMate</span> Today
           </h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto">14-day free trial. No credit card required.</p>
-          <Button variant="hero" size="lg" className="mt-8">Get Started Free <ArrowRight className="ml-1 h-4 w-4" /></Button>
+          <Button variant="secondary" size="lg" className="mt-8 rounded-full">Get Started Free <ArrowRight className="ml-1 h-4 w-4" /></Button>
         </motion.div>
       </div>
     </section>
