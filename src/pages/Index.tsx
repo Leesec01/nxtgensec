@@ -95,9 +95,9 @@ const About = () => (
       />
       <div className="grid gap-8 md:grid-cols-3">
         {[
-          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected." },
-          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research." },
-          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs." },
+          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected.", color: "text-primary" },
+          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research.", color: "text-accent" },
+          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs.", color: "text-secondary" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -107,7 +107,7 @@ const About = () => (
             transition={{ delay: i * 0.15 }}
             className="rounded-xl border border-border bg-card p-8 hover:border-glow transition-colors duration-300"
           >
-            <item.icon className="h-10 w-10 text-primary mb-4" />
+            <item.icon className={`h-10 w-10 ${item.color} mb-4`} />
             <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{item.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
           </motion.div>
