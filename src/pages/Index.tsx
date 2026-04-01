@@ -10,14 +10,20 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
+
 /* ─── Hero ─── */
 const Hero = () => (
   <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
     <div className="absolute inset-0 bg-grid opacity-20" />
     <div className="absolute inset-0 bg-gradient-radial" />
-    {/* Subtle accent glow orbs */}
     <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
     <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[120px]" />
+    <div className="absolute top-1/3 right-1/3 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[120px]" />
 
     <div className="container relative mx-auto px-4 lg:px-8 py-20">
       <motion.div
@@ -26,7 +32,6 @@ const Hero = () => (
         transition={{ duration: 0.7 }}
         className="text-center max-w-4xl mx-auto"
       >
-        {/* Badge */}
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +42,6 @@ const Hero = () => (
           India's Best Platform for Security-First Development
         </motion.span>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -47,19 +51,16 @@ const Hero = () => (
           NxtGenSec | Next Generation Security
         </motion.p>
 
-        {/* Main heading with multi-color words */}
         <h1 className="font-heading text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl">
           <span className="text-foreground">Securing </span>
           <span className="text-accent">Digital </span>
           <span className="text-primary">Assets</span>
         </h1>
 
-        {/* Description */}
         <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground leading-relaxed">
           We provide development and security solutions for startups, enterprises, and modern businesses using advanced technologies with a strict security-first approach.
         </p>
 
-        {/* CTA Buttons */}
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Button variant="hero" size="lg" className="rounded-full">
             Get Started <ArrowRight className="ml-1 h-4 w-4" />
@@ -69,7 +70,6 @@ const Hero = () => (
           </Button>
         </div>
 
-        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -95,19 +95,16 @@ const About = () => (
       />
       <div className="grid gap-8 md:grid-cols-3">
         {[
-          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected.", color: "text-primary" },
-          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research.", color: "text-accent" },
-          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs.", color: "text-secondary" },
+          { icon: Shield, title: "Security First", desc: "Every solution we build is grounded in security-first principles, ensuring your assets are always protected.", color: "text-primary", bg: "bg-primary/10" },
+          { icon: Rocket, title: "Innovation Driven", desc: "We stay ahead of threats by leveraging the latest technologies, frameworks, and research.", color: "text-accent", bg: "bg-accent/10" },
+          { icon: Users, title: "Client Focused", desc: "Your success is our mission. We tailor solutions to match your unique business needs.", color: "text-secondary", bg: "bg-secondary/10" },
         ].map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15 }}
-            className="rounded-xl border border-border bg-card p-8 hover:border-glow transition-colors duration-300"
+          <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15 }}
+            className="rounded-xl border border-border bg-card p-8 hover:border-glow transition-all duration-300"
           >
-            <item.icon className={`h-10 w-10 ${item.color} mb-4`} />
+            <div className={`mb-4 inline-flex rounded-lg p-3 ${item.bg}`}>
+              <item.icon className={`h-10 w-10 ${item.color}`} />
+            </div>
             <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{item.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
           </motion.div>
@@ -129,20 +126,15 @@ const Services = () => (
       />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies.", color: "text-secondary" },
-          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection.", color: "text-primary" },
-          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning.", color: "text-accent" },
-          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services.", color: "text-secondary" },
+          { icon: Code, title: "Web Development", desc: "Modern, scalable web applications built with cutting-edge technologies.", color: "text-accent", bg: "bg-accent/10" },
+          { icon: Lock, title: "Cybersecurity", desc: "Comprehensive security audits, penetration testing, and threat protection.", color: "text-primary", bg: "bg-primary/10" },
+          { icon: Cpu, title: "AI & Automation", desc: "Intelligent automation solutions powered by machine learning.", color: "text-secondary", bg: "bg-secondary/10" },
+          { icon: Globe, title: "Cloud Solutions", desc: "Secure cloud architecture, migration, and management services.", color: "text-accent", bg: "bg-accent/10" },
         ].map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="group rounded-xl border border-border bg-card p-6 hover:border-glow hover:glow-primary transition-all duration-300"
+          <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
+            className="group rounded-xl border border-border bg-card p-6 hover:border-glow transition-all duration-300"
           >
-            <div className={`mb-4 inline-flex rounded-lg p-3 ${item.color === 'text-primary' ? 'bg-primary/10' : item.color === 'text-accent' ? 'bg-accent/10' : 'bg-secondary/10'}`}>
+            <div className={`mb-4 inline-flex rounded-lg p-3 ${item.bg}`}>
               <item.icon className={`h-6 w-6 ${item.color}`} />
             </div>
             <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
@@ -160,11 +152,11 @@ const DevOverview = () => (
     <div className="container mx-auto px-4 lg:px-8">
       <div className="grid gap-12 items-center lg:grid-cols-2">
         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          <span className="inline-block mb-4 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-1.5 text-xs font-medium text-secondary">
+          <span className="inline-block mb-4 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium text-accent">
             Development
           </span>
           <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            Building <span className="text-gradient-primary">Powerful</span> Solutions
+            Building <span className="text-accent">Powerful</span> Solutions
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             From web and mobile apps to enterprise platforms, we architect scalable, secure, and performant software solutions.
@@ -172,12 +164,12 @@ const DevOverview = () => (
           <ul className="mt-6 space-y-3">
             {["Full-Stack Web Applications", "Mobile App Development", "API Design & Integration", "Cloud-Native Architecture"].map((t, i) => (
               <li key={i} className="flex items-center gap-3 text-sm text-surface-foreground">
-                <CheckCircle className="h-4 w-4 text-primary shrink-0" /> {t}
+                <CheckCircle className="h-4 w-4 text-accent shrink-0" /> {t}
               </li>
             ))}
           </ul>
           <Link to="/development">
-            <Button variant="hero-outline" className="mt-8">
+            <Button variant="accent" className="mt-8 rounded-full">
               Learn More <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </Link>
@@ -216,20 +208,21 @@ const CyberOverview = () => (
               { icon: Terminal, label: "Pen Tests Done", value: "500+" },
               { icon: Server, label: "Servers Secured", value: "10K+" },
             ].map((item, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card p-6 text-center">
+              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
+                className="rounded-xl border border-border bg-card p-6 text-center">
                 <item.icon className="h-6 w-6 text-primary mx-auto mb-2" />
                 <p className="font-heading text-2xl font-bold text-foreground">{item.value}</p>
                 <p className="text-xs text-muted-foreground mt-1">{item.label}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="order-1 lg:order-2">
-          <span className="inline-block mb-4 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium text-accent">
+          <span className="inline-block mb-4 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
             Cybersecurity
           </span>
           <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
-            Defend Your <span className="text-gradient-accent">Infrastructure</span>
+            Defend Your <span className="text-primary">Infrastructure</span>
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Enterprise-grade security services including penetration testing, vulnerability assessments, incident response, and continuous monitoring.
@@ -237,12 +230,12 @@ const CyberOverview = () => (
           <ul className="mt-6 space-y-3">
             {["Penetration Testing & Red Teaming", "Vulnerability Assessment", "Incident Response & Recovery", "Compliance & Risk Management"].map((t, i) => (
               <li key={i} className="flex items-center gap-3 text-sm text-surface-foreground">
-                <CheckCircle className="h-4 w-4 text-accent shrink-0" /> {t}
+                <CheckCircle className="h-4 w-4 text-primary shrink-0" /> {t}
               </li>
             ))}
           </ul>
           <Link to="/cybersecurity">
-            <Button variant="accent" className="mt-8">
+            <Button variant="default" className="mt-8 rounded-full">
               Explore Security <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </Link>
@@ -261,17 +254,19 @@ const Product = () => (
         title="Introducing"
         highlight="AwMate"
         description="Your intelligent security companion — automated monitoring, instant alerts, and actionable insights all in one platform."
+        badgeColor="secondary"
+        highlightColor="secondary"
       />
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-2xl border border-border bg-card p-8 md:p-12">
+      <motion.div {...fadeUp} className="rounded-2xl border border-border bg-card p-8 md:p-12">
         <div className="grid gap-8 md:grid-cols-3">
           {[
-            { icon: Zap, title: "Real-Time Alerts", desc: "Instant notifications when threats are detected across your infrastructure." },
-            { icon: Layers, title: "Smart Dashboard", desc: "Unified view of all security metrics, logs, and threat intelligence." },
-            { icon: Cpu, title: "AI-Powered Analysis", desc: "Machine learning models that identify patterns and predict vulnerabilities." },
+            { icon: Zap, title: "Real-Time Alerts", desc: "Instant notifications when threats are detected across your infrastructure.", color: "text-secondary", bg: "bg-secondary/10" },
+            { icon: Layers, title: "Smart Dashboard", desc: "Unified view of all security metrics, logs, and threat intelligence.", color: "text-accent", bg: "bg-accent/10" },
+            { icon: Cpu, title: "AI-Powered Analysis", desc: "Machine learning models that identify patterns and predict vulnerabilities.", color: "text-primary", bg: "bg-primary/10" },
           ].map((item, i) => (
             <div key={i} className="text-center">
-              <div className="mx-auto mb-4 inline-flex rounded-lg bg-primary/10 p-4">
-                <item.icon className="h-8 w-8 text-primary" />
+              <div className={`mx-auto mb-4 inline-flex rounded-lg p-4 ${item.bg}`}>
+                <item.icon className={`h-8 w-8 ${item.color}`} />
               </div>
               <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -280,7 +275,7 @@ const Product = () => (
         </div>
         <div className="mt-10 text-center">
           <Link to="/awmate">
-            <Button variant="hero" size="lg">
+            <Button variant="secondary" size="lg" className="rounded-full">
               Discover AwMate <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </Link>
@@ -300,19 +295,10 @@ const testimonials = [
 const Testimonials = () => (
   <section className="py-24">
     <div className="container mx-auto px-4 lg:px-8">
-      <SectionHeading
-        badge="Testimonials"
-        title="What Our Clients"
-        highlight="Say"
-      />
+      <SectionHeading badge="Testimonials" title="What Our Clients" highlight="Say" badgeColor="accent" highlightColor="accent" />
       <div className="grid gap-6 md:grid-cols-3">
         {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15 }}
+          <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15 }}
             className="rounded-xl border border-border bg-card p-8"
           >
             <div className="flex gap-1 mb-4">
@@ -336,30 +322,21 @@ const Testimonials = () => (
 const WhyUs = () => (
   <section className="py-24 bg-surface">
     <div className="container mx-auto px-4 lg:px-8">
-      <SectionHeading
-        badge="Why Us"
-        title="Why Choose"
-        highlight="NxtGenSec"
-      />
+      <SectionHeading badge="Why Us" title="Why Choose" highlight="NxtGenSec" badgeColor="secondary" highlightColor="primary" />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { icon: Award, title: "Industry Certified", desc: "Our team holds OSCP, CEH, CISSP, and other top-tier certifications." },
-          { icon: Zap, title: "Fast Turnaround", desc: "Agile processes ensure rapid delivery without compromising quality." },
-          { icon: Shield, title: "Proven Track Record", desc: "500+ successful projects across cybersecurity and development." },
-          { icon: Users, title: "Dedicated Support", desc: "Round-the-clock support with dedicated account managers." },
-          { icon: Globe, title: "Global Reach", desc: "Serving clients across 20+ countries with localized expertise." },
-          { icon: Lock, title: "Data Privacy", desc: "Strict NDA compliance and enterprise-grade data protection." },
+          { icon: Award, title: "Industry Certified", desc: "Our team holds OSCP, CEH, CISSP, and other top-tier certifications.", color: "text-primary", bg: "bg-primary/10" },
+          { icon: Zap, title: "Fast Turnaround", desc: "Agile processes ensure rapid delivery without compromising quality.", color: "text-accent", bg: "bg-accent/10" },
+          { icon: Shield, title: "Proven Track Record", desc: "500+ successful projects across cybersecurity and development.", color: "text-secondary", bg: "bg-secondary/10" },
+          { icon: Users, title: "Dedicated Support", desc: "Round-the-clock support with dedicated account managers.", color: "text-primary", bg: "bg-primary/10" },
+          { icon: Globe, title: "Global Reach", desc: "Serving clients across 20+ countries with localized expertise.", color: "text-accent", bg: "bg-accent/10" },
+          { icon: Lock, title: "Data Privacy", desc: "Strict NDA compliance and enterprise-grade data protection.", color: "text-secondary", bg: "bg-secondary/10" },
         ].map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+          <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
             className="flex gap-4 rounded-xl border border-border bg-card p-6"
           >
-            <div className="shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <item.icon className="h-6 w-6 text-primary" />
+            <div className={`shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-lg ${item.bg}`}>
+              <item.icon className={`h-6 w-6 ${item.color}`} />
             </div>
             <div>
               <h3 className="font-heading font-semibold text-foreground mb-1">{item.title}</h3>
@@ -390,12 +367,7 @@ const FAQs = () => {
         <SectionHeading badge="FAQs" title="Frequently Asked" highlight="Questions" />
         <div className="max-w-3xl mx-auto space-y-3">
           {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.05 }}
               className="rounded-xl border border-border bg-card overflow-hidden"
             >
               <button
@@ -405,9 +377,14 @@ const FAQs = () => {
                 <span className="font-heading font-medium text-foreground text-sm">{faq.q}</span>
                 {open === i ? <ChevronUp className="h-4 w-4 text-muted-foreground shrink-0" /> : <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />}
               </button>
-              {open === i && (
+              <motion.div
+                initial={false}
+                animate={{ height: open === i ? "auto" : 0, opacity: open === i ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
                 <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">{faq.a}</div>
-              )}
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -421,9 +398,7 @@ const CTA = () => (
   <section className="py-24 bg-surface">
     <div className="container mx-auto px-4 lg:px-8">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        {...fadeUp}
         className="rounded-2xl border border-primary/20 bg-gradient-radial p-12 md:p-16 text-center"
       >
         <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">
@@ -433,10 +408,10 @@ const CTA = () => (
           Let's discuss how NxtGenSec can protect your digital assets and accelerate your growth.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button variant="hero" size="lg">
+          <Button variant="hero" size="lg" className="rounded-full">
             Get a Free Consultation <ArrowRight className="ml-1 h-4 w-4" />
           </Button>
-          <Button variant="hero-outline" size="lg">
+          <Button variant="hero-outline" size="lg" className="rounded-full">
             <MessageSquare className="mr-1 h-4 w-4" /> Talk to an Expert
           </Button>
         </div>

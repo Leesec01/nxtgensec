@@ -28,19 +28,26 @@ const scenarios = [
   { title: "E-Commerce Platform Hardening", desc: "Protected a retail platform processing $50M annually. Implemented WAF rules, DDoS mitigation, and PCI-DSS compliant payment flows." },
 ];
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};
+
 const CybersecurityPage = () => (
   <Layout>
     {/* Hero */}
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
       <div className="container relative mx-auto px-4 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-3xl">
-          <span className="inline-block mb-6 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium text-accent">Cybersecurity</span>
+          <span className="inline-block mb-6 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">Cybersecurity</span>
           <h1 className="font-heading text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
-            Protect What <span className="text-gradient-accent">Matters Most</span>
+            Protect What <span className="text-primary">Matters Most</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">Enterprise-grade cybersecurity services to defend your organization from evolving threats.</p>
-          <Button variant="accent" size="lg" className="mt-8">Get Security Assessment <ArrowRight className="ml-1 h-4 w-4" /></Button>
+          <Button variant="default" size="lg" className="mt-8 rounded-full">Get Security Assessment <ArrowRight className="ml-1 h-4 w-4" /></Button>
         </motion.div>
       </div>
     </section>
@@ -48,12 +55,12 @@ const CybersecurityPage = () => (
     {/* Services */}
     <section className="py-24 bg-surface">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Security Services" title="Comprehensive" highlight="Protection" description="Multi-layered security services designed to detect, prevent, and respond to threats." />
+        <SectionHeading badge="Security Services" title="Comprehensive" highlight="Protection" description="Multi-layered security services designed to detect, prevent, and respond to threats." badgeColor="primary" highlightColor="primary" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-border bg-card p-6 hover:border-glow transition-colors duration-300">
-              <div className="mb-4 inline-flex rounded-lg bg-accent/10 p-3"><s.icon className="h-6 w-6 text-accent" /></div>
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1 }}
+              className="rounded-xl border border-border bg-card p-6 hover:border-primary/30 transition-colors duration-300">
+              <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3"><s.icon className="h-6 w-6 text-primary" /></div>
               <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{s.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </motion.div>
@@ -65,7 +72,7 @@ const CybersecurityPage = () => (
     {/* Risk Assessment Process */}
     <section className="py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Risk Assessment" title="Our Security" highlight="Process" />
+        <SectionHeading badge="Risk Assessment" title="Our Security" highlight="Process" badgeColor="primary" highlightColor="primary" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { step: "01", title: "Reconnaissance", desc: "Asset discovery and attack surface mapping." },
@@ -73,9 +80,9 @@ const CybersecurityPage = () => (
             { step: "03", title: "Exploitation", desc: "Controlled penetration testing and validation." },
             { step: "04", title: "Remediation", desc: "Detailed reporting and fix implementation." },
           ].map((p, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15 }}
               className="rounded-xl border border-border bg-card p-6 text-center">
-              <span className="font-heading text-3xl font-bold text-accent/30">{p.step}</span>
+              <span className="font-heading text-3xl font-bold text-primary/30">{p.step}</span>
               <h3 className="font-heading text-lg font-semibold text-foreground mt-3 mb-2">{p.title}</h3>
               <p className="text-sm text-muted-foreground">{p.desc}</p>
             </motion.div>
@@ -87,11 +94,11 @@ const CybersecurityPage = () => (
     {/* Tools */}
     <section className="py-24 bg-surface">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Arsenal" title="Tools &" highlight="Practices" />
+        <SectionHeading badge="Arsenal" title="Tools &" highlight="Practices" badgeColor="primary" highlightColor="primary" />
         <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
           {tools.map((tool, i) => (
             <motion.span key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:border-glow transition-colors">
+              className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:border-primary/30 hover:text-primary transition-colors">
               {tool}
             </motion.span>
           ))}
@@ -102,12 +109,12 @@ const CybersecurityPage = () => (
     {/* Case Scenarios */}
     <section className="py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        <SectionHeading badge="Case Studies" title="Real-World" highlight="Impact" />
+        <SectionHeading badge="Case Studies" title="Real-World" highlight="Impact" badgeColor="primary" highlightColor="primary" />
         <div className="grid gap-6 lg:grid-cols-3">
           {scenarios.map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
+            <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.15 }}
               className="rounded-xl border border-border bg-card p-8">
-              <FileSearch className="h-8 w-8 text-accent mb-4" />
+              <FileSearch className="h-8 w-8 text-primary mb-4" />
               <h3 className="font-heading text-lg font-semibold text-foreground mb-3">{s.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </motion.div>
@@ -119,11 +126,11 @@ const CybersecurityPage = () => (
     {/* CTA */}
     <section className="py-24 bg-surface">
       <div className="container mx-auto px-4 lg:px-8 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="rounded-2xl border border-accent/20 p-12 md:p-16">
-          <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">Don't Wait for a <span className="text-gradient-accent">Breach</span></h2>
+        <motion.div {...fadeUp}
+          className="rounded-2xl border border-primary/20 p-12 md:p-16">
+          <h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">Don't Wait for a <span className="text-primary">Breach</span></h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Get a comprehensive security assessment today and protect your organization.</p>
-          <Button variant="accent" size="lg" className="mt-8">Schedule Assessment <ArrowRight className="ml-1 h-4 w-4" /></Button>
+          <Button variant="default" size="lg" className="mt-8 rounded-full">Schedule Assessment <ArrowRight className="ml-1 h-4 w-4" /></Button>
         </motion.div>
       </div>
     </section>
