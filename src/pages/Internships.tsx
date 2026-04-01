@@ -33,7 +33,7 @@ const colorStyles = {
   primary: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
 };
 
-const InternshipCard = ({ data }: { data: typeof devInternship }) => {
+const InternshipCard = ({ data }: { data: { title: string; icon: typeof Code; color: "accent" | "primary"; duration: string; topics: string[]; outcomes: string[] } }) => {
   const styles = colorStyles[data.color];
   return (
     <motion.div {...fadeUp}
